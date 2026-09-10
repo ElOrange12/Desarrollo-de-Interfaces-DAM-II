@@ -1,8 +1,5 @@
 # 🖥️ Diseño de Interfaces (DI) - DAM II
 
-![DAM](https://img.shields.io/badge/Ciclo-DAM-blue?style=flat-square)
-![Comunitat Valenciana](https://img.shields.io/badge/Currículo-Comunitat_Valenciana-orange?style=flat-square)
-
 Repositorio de proyectos, prácticas y apuntes del módulo **Diseño de Interfaces (DI)**, correspondiente al 2º curso del Ciclo Formativo de Grado Superior en **Desarrollo de Aplicaciones Multiplataforma (DAM)**. 
 
 Los contenidos y resultados de aprendizaje de este repositorio están estructurados de acuerdo con el currículo oficial establecido para la **Comunitat Valenciana** (Decreto 63/2012 del Consell, que desarrolla el Real Decreto 450/2010 a nivel autonómico).
