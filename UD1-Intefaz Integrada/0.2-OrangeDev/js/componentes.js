@@ -1,5 +1,5 @@
 /**
- * OrangeDev | iu
+ * orangedev | iu
  * Control de la interfaz mediante programación orientada a objetos.
  *
  * JavaScript no admite "|" dentro de un identificador, así que el
@@ -597,6 +597,7 @@ window.orangedev.iu = window.orangedev.iu || {};
         eventos: () => this.vistaEventos(),
         toasts: () => this.vistaToasts(),
         modal: () => this.vistaModal(),
+        documento: () => this.vistaDocumento(),
         login: () => this.vistaLogin(),
         identidad: () => this.vistaIdentidad()
       };
@@ -757,6 +758,7 @@ window.orangedev.iu = window.orangedev.iu || {};
           <h2>${Utilidades.escapar(modulo)}</h2>
           <p>Este módulo todavía no tiene ${que}. Añade su archivo JSON en <code>data/</code> y enlázalo en <code>menu.json</code>.</p>
         </div>`);
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -784,6 +786,7 @@ window.orangedev.iu = window.orangedev.iu || {};
         formulario.reset();
       });
       tarjeta.appendChild(formulario);
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -929,6 +932,7 @@ window.orangedev.iu = window.orangedev.iu || {};
       });
 
       actualizarCalculos();
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -1019,6 +1023,7 @@ window.orangedev.iu = window.orangedev.iu || {};
       DOM.uno("#limpiarRegistro", tarjeta).addEventListener("click", () => registro.replaceChildren());
       log("DOMContentLoaded", "ya ocurrió al cargar la página: así arranca la aplicación");
 
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -1044,6 +1049,7 @@ window.orangedev.iu = window.orangedev.iu || {};
         const boton = e.target.closest("[data-toast]");
         if (boton) this.toast.mostrar(boton.dataset.toast, ...textos[boton.dataset.toast]);
       });
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -1068,7 +1074,7 @@ window.orangedev.iu = window.orangedev.iu || {};
           </div>
         </div>`);
       DOM.uno("#demoModal", tarjeta).addEventListener("click", () =>
-        this.modal.abrir("Ejemplo de ventana modal", "<p>Ventana modal reutilizable de <strong>OrangeDev | iu</strong>.</p>")
+        this.modal.abrir("Ejemplo de ventana modal", "<p>Ventana modal reutilizable de <strong>orangedev | iu</strong>.</p>")
       );
       DOM.uno("#demoConfirmar", tarjeta).addEventListener("click", () =>
         this.modal.confirmar("¿Seguro?", "Esta acción es solo una demostración.", () =>
@@ -1076,6 +1082,7 @@ window.orangedev.iu = window.orangedev.iu || {};
         )
       );
       DOM.uno("#demoDrawer", tarjeta).addEventListener("click", () => this.crear());
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }
@@ -1106,8 +1113,188 @@ window.orangedev.iu = window.orangedev.iu || {};
         e.preventDefault();
         this.toast.mostrar("exito", "Acceso simulado", "El evento submit del login se ha capturado.");
       });
+
       this.barra.actualizar({ registros: null });
       this.pintar(contenedor);
+    }
+
+    vistaDocumento() {
+      const tarjeta = this.tarjeta(`
+        <div class="od-doc-header">
+          <div>
+            <h2>Documento de texto</h2>
+            <p>Editor enriquecido estilo Docs con dictado por voz mediante Web Speech API.</p>
+          </div>
+          <div class="od-doc-acciones">
+            <button class="mv-btn" type="button" id="btnDictar">
+              <span id="iconoMicro">🎤</span> <span id="textoDictar">Iniciar dictado</span>
+            </button>
+            <button class="mv-btn secundario" type="button" id="btnLimpiarDoc">Limpiar</button>
+            <button class="mv-btn secundario" type="button" id="btnDescargarDoc">Descargar .txt</button>
+          </div>
+        </div>
+
+        <div class="od-doc-toolbar">
+          <button type="button" data-cmd="bold" title="Negrita (Ctrl+B)"><b>B</b></button>
+          <button type="button" data-cmd="italic" title="Cursiva (Ctrl+I)"><i>I</i></button>
+          <button type="button" data-cmd="underline" title="Subrayado (Ctrl+U)"><u>U</u></button>
+          <span class="od-doc-sep"></span>
+          <button type="button" data-cmd="formatBlock" data-val="h1" title="Título 1">H1</button>
+          <button type="button" data-cmd="formatBlock" data-val="h2" title="Título 2">H2</button>
+          <button type="button" data-cmd="formatBlock" data-val="p" title="Párrafo normal">¶</button>
+          <span class="od-doc-sep"></span>
+          <button type="button" data-cmd="insertUnorderedList" title="Lista de viñetas">• Viñetas</button>
+          <button type="button" data-cmd="insertOrderedList" title="Lista numerada">1. Números</button>
+          <span class="od-doc-sep"></span>
+          <button type="button" data-cmd="justifyLeft" title="Alinear a la izquierda">⬅ Izq</button>
+          <button type="button" data-cmd="justifyCenter" title="Centrar">⬌ Centro</button>
+          <button type="button" data-cmd="justifyRight" title="Alinear a la derecha">➡ Der</button>
+          <span class="od-doc-sep"></span>
+          <button type="button" id="btnImprimirDoc" title="Imprimir / Exportar a PDF">🖨 Imprimir / PDF</button>
+        </div>
+
+        <div class="od-doc-estado-voz" id="estadoVoz" style="display:none">
+          <span class="od-doc-pulso"></span>
+          <span id="textoEstadoVoz">Escuchando... habla hacia tu micrófono</span>
+        </div>
+
+        <div class="od-doc-contenedor-folio">
+          <div class="od-doc-hoja" id="editorDocumento" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" placeholder="Empieza a escribir o pulsa «Iniciar dictado» para hablar..."></div>
+        </div>
+      `);
+
+      const editor = DOM.uno("#editorDocumento", tarjeta);
+      const btnDictar = DOM.uno("#btnDictar", tarjeta);
+      const textoDictar = DOM.uno("#textoDictar", tarjeta);
+      const iconoMicro = DOM.uno("#iconoMicro", tarjeta);
+      const estadoVoz = DOM.uno("#estadoVoz", tarjeta);
+      const textoEstadoVoz = DOM.uno("#textoEstadoVoz", tarjeta);
+      const btnLimpiar = DOM.uno("#btnLimpiarDoc", tarjeta);
+      const btnDescargar = DOM.uno("#btnDescargarDoc", tarjeta);
+      const btnImprimir = DOM.uno("#btnImprimirDoc", tarjeta);
+
+      // Barra de herramientas de texto
+      DOM.todos(".od-doc-toolbar button[data-cmd]", tarjeta).forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const cmd = btn.dataset.cmd;
+          const val = btn.dataset.val || null;
+          document.execCommand(cmd, false, val);
+          editor.focus();
+        });
+      });
+
+      // Reconocimiento de voz (Web Speech API)
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognition = null;
+      let escuchando = false;
+
+      if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = "es-ES";
+
+        recognition.onstart = () => {
+          escuchando = true;
+          btnDictar.classList.add("od-grabando");
+          textoDictar.textContent = "Detener dictado";
+          iconoMicro.textContent = "⏹";
+          estadoVoz.style.display = "flex";
+          textoEstadoVoz.textContent = "Escuchando... habla hacia tu micrófono";
+          this.toast.mostrar("info", "Dictado por voz", "Micrófono activado. Habla con claridad.");
+        };
+
+        recognition.onresult = (evento) => {
+          let interim = "";
+          for (let i = evento.resultIndex; i < evento.results.length; ++i) {
+            const transcript = evento.results[i][0].transcript;
+            if (evento.results[i].isFinal) {
+              document.execCommand("insertText", false, transcript + " ");
+            } else {
+              interim += transcript;
+            }
+          }
+          if (interim) {
+            textoEstadoVoz.textContent = `Escuchando: "${interim}"`;
+          }
+        };
+
+        recognition.onerror = (e) => {
+          if (e.error === "network") {
+            this.toast.mostrar("error", "Error de red en reconocimiento", "El navegador envía el audio a los servidores de voz (Google/Microsoft) pero falló la conexión, o el navegador/entorno tiene bloqueado el servicio de voz online.");
+          } else if (e.error === "not-allowed") {
+            this.toast.mostrar("aviso", "Permiso denegado", "Debes permitir el acceso al micrófono en el navegador.");
+          } else if (e.error === "no-speech") {
+            this.toast.mostrar("info", "Sin sonido", "No se detectó voz. Vuelve a intentarlo.");
+          } else {
+            this.toast.mostrar("error", "Error de micrófono", `Detalle: ${e.error}`);
+          }
+          detenerVoz();
+        };
+
+        recognition.onend = () => {
+          if (escuchando) {
+            detenerVoz();
+          }
+        };
+
+        const detenerVoz = () => {
+          escuchando = false;
+          btnDictar.classList.remove("od-grabando");
+          textoDictar.textContent = "Iniciar dictado";
+          iconoMicro.textContent = "🎤";
+          estadoVoz.style.display = "none";
+        };
+
+        btnDictar.addEventListener("click", () => {
+          if (!escuchando) {
+            editor.focus();
+            try {
+              recognition.start();
+            } catch (err) {
+              try { recognition.stop(); } catch (_) {}
+            }
+          } else {
+            try { recognition.stop(); } catch (_) {}
+            detenerVoz();
+            this.toast.mostrar("info", "Dictado detenido", "Micrófono apagado.");
+          }
+        });
+      } else {
+        btnDictar.disabled = true;
+        btnDictar.title = "Tu navegador no soporta Web Speech API (usa Chrome o Edge)";
+        textoDictar.textContent = "Voz no compatible";
+      }
+
+      // Limpiar lienzo
+      btnLimpiar.addEventListener("click", () => {
+        if (!editor.innerText.trim() || confirm("¿Seguro que deseas vaciar el documento?")) {
+          editor.innerHTML = "";
+          editor.focus();
+          this.toast.mostrar("info", "Lienzo limpio", "Se ha vaciado el documento.");
+        }
+      });
+
+      // Descargar como archivo .txt
+      btnDescargar.addEventListener("click", () => {
+        const texto = editor.innerText;
+        const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+        const enlace = document.createElement("a");
+        enlace.href = URL.createObjectURL(blob);
+        enlace.download = "documento-orangedev.txt";
+        enlace.click();
+        URL.revokeObjectURL(enlace.href);
+        this.toast.mostrar("exito", "Descarga lista", "Documento guardado como archivo de texto.");
+      });
+
+      // Imprimir o guardar como PDF
+      btnImprimir.addEventListener("click", () => {
+        window.print();
+      });
+
+      this.barra.actualizar({ registros: null });
+      this.pintar(tarjeta);
     }
 
     vistaIdentidad() {
@@ -1140,6 +1327,7 @@ window.orangedev.iu = window.orangedev.iu || {};
           <div class="mv-muestra-forma"><span style="border-radius:50%"></span><span style="border-radius:10px"></span></div>
           <div><h3>Formas</h3><p class="mv-ayuda">${Utilidades.escapar(id.formas.radio)} ${Utilidades.escapar(id.formas.motivo)}</p></div>
         </div>`);
+
       this.barra.actualizar({ registros: null });
       this.pintar(tarjeta);
     }

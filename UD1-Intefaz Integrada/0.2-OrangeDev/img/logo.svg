@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="612 192 1126 1293" width="1126" height="1293">
+  <defs>
+    <linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#ff8c0a"/>
+      <stop offset="0.55" stop-color="#ff6a00"/>
+      <stop offset="1" stop-color="#f04a05"/>
+    </linearGradient>
+    <linearGradient id="gl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8a0a"/>
+      <stop offset="1" stop-color="#f25a08"/>
+    </linearGradient>
+
+    <!-- Máscara: lo negro se recorta (transparente), lo blanco se conserva -->
+    <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="2213" height="1624">
+      <rect width="2213" height="1624" fill="#fff"/>
+
+      <!-- Venas de las hojas -->
+      <path d="M805,330 C900,350 990,400 1037,480 C1010,440 960,380 805,330 Z" fill="#000" stroke="#000" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M1335,285 C1230,320 1120,400 1080,495 C1130,400 1200,340 1335,285 Z" fill="#000" stroke="#000" stroke-width="8" stroke-linejoin="round"/>
+
+      <!-- Separación diagonal cuerpo/esquirla -->
+      <path d="M1083,1043 L1112,995 L1235,870 L1405,838" fill="none" stroke="#000" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Pistas del circuito -->
+      <g fill="none" stroke="#000" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M970,1152 L970,1230 L1055,1320 L1055,1490"/>
+        <path d="M1325,1010 L1130,1205 L1128,1490"/>
+        <path d="M1375,1000 L1205,1180 L1180,1250 L1185,1490"/>
+        <path d="M1380,1238 L1277,1335 L1275,1470"/>
+      </g>
+
+      <!-- Anillos de los nodos (el punto central vuelve a ser visible) -->
+      <g>
+        <circle cx="1083" cy="1043" r="52" fill="#000"/><circle cx="1083" cy="1043" r="22" fill="#fff"/>
+        <circle cx="970" cy="1152" r="52" fill="#000"/><circle cx="970" cy="1152" r="22" fill="#fff"/>
+        <circle cx="1325" cy="1010" r="52" fill="#000"/><circle cx="1325" cy="1010" r="22" fill="#fff"/>
+        <circle cx="1380" cy="1238" r="52" fill="#000"/><circle cx="1380" cy="1238" r="22" fill="#fff"/>
+      </g>
+    </mask>
+  </defs>
+
+  <!-- Sin rectángulo de fondo: el lienzo es transparente -->
+
+  <g mask="url(#cut)">
+    <!-- Hojas -->
+    <path d="M686,255 C800,238 960,262 1018,370 C1040,410 1040,455 1035,480 C1020,510 1000,520 960,522 C840,520 730,420 686,255 Z" fill="url(#gl)"/>
+    <path d="M1443,192 C1300,195 1150,260 1090,400 C1070,440 1070,470 1080,495 C1090,515 1110,520 1135,520 C1260,520 1420,420 1443,192 Z" fill="url(#gl)"/>
+
+    <!-- Cuerpo de la naranja -->
+    <path d="M1070,552 C1165,552 1255,575 1305,608 C1316,700 1290,790 1215,872 L1400,842 L1385,900 L1375,925 L1395,965 L1215,1250 L1225,1330 L1220,1465 L1035,1485 C800,1470 612,1260 612,1010 C612,740 800,552 1070,552 Z" fill="url(#g)"/>
+    <!-- Brillo/sombra interior -->
+    <path d="M1180,575 C1240,600 1290,640 1308,610 C1316,700 1290,790 1215,872 C1255,800 1255,680 1180,575 Z" fill="#f2690a" opacity="0.7"/>
+    <!-- Hoja inferior derecha -->
+    <path d="M1540,1040 C1535,1200 1450,1350 1295,1432 L1295,1370 L1258,1335 L1262,1290 L1480,1060 Z" fill="url(#gl)"/>
+
+    <!-- Puntos centrales de los nodos -->
+    <circle cx="1083" cy="1043" r="22" fill="#ff7a0a"/>
+    <circle cx="970" cy="1152" r="22" fill="#ff7a0a"/>
+    <circle cx="1325" cy="1010" r="22" fill="#ff7a0a"/>
+    <circle cx="1380" cy="1238" r="22" fill="#f25a08"/>
+  </g>
+
+  <!-- Nodo exterior naranja -->
+  <path d="M1400,968 C1420,950 1450,945 1500,943 L1590,942" fill="none" stroke="#ff7a0a" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="1645" cy="941" r="40" fill="none" stroke="#ff7a0a" stroke-width="26"/>
+
+  <!-- Llaves { } -->
+  <g fill="#ff7a0a">
+    <path d="M1523,372 C1490,372 1470,390 1470,420 L1470,455 C1470,470 1458,480 1442,487 C1458,492 1470,502 1470,518 L1470,552 C1470,582 1490,598 1523,598 L1523,572 C1510,572 1502,566 1502,552 L1502,515 C1502,498 1492,490 1480,487 C1492,484 1502,476 1502,459 L1502,422 C1502,408 1510,400 1523,400 Z"/>
+    <path d="M1615,372 C1648,372 1668,390 1668,420 L1668,455 C1668,470 1680,480 1697,487 C1680,492 1668,502 1668,518 L1668,552 C1668,582 1648,598 1615,598 L1615,572 C1628,572 1636,566 1636,552 L1636,515 C1636,498 1646,490 1658,487 C1646,484 1636,476 1636,459 L1636,422 C1636,408 1628,400 1615,400 Z"/>
+  </g>
+
+  <!-- Etiqueta de código </> -->
+  <g fill="#ff7a0a">
+    <path d="M1495,682 L1398,742 L1495,805 L1495,775 L1445,742 L1495,712 Z"/>
+    <path d="M1640,682 L1738,742 L1640,812 L1640,780 L1692,745 L1640,712 Z"/>
+    <path d="M1612,648 L1520,845 L1550,845 L1642,648 Z" transform="translate(-10 0)"/>
+  </g>
+</svg>

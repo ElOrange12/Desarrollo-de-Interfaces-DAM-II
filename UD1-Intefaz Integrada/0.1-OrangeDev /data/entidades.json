@@ -5,6 +5,7 @@
   { "texto": "Eventos",          "vista": "eventos" },
   { "texto": "Toasts",           "vista": "toasts" },
   { "texto": "Modal y panel",    "vista": "modal" },
+  { "texto": "Documento (Voz)",  "vista": "documento" },
   { "texto": "Login",            "vista": "login" },
   { "texto": "Identidad",        "vista": "identidad" }
 ]

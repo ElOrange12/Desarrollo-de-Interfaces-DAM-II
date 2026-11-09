@@ -245,3 +245,31 @@ kbd{display:inline-block;padding:2px 8px;border-radius:0;clip-path:var(--clip-sm
   .mv-login{grid-template-columns:1fr}
   .mv-login-marca{border-right:0;border-bottom:4px solid var(--acento);padding:24px}
 }
+
+/* ---------- 17. Documento tipo Docs / Word (con voz) ---------- */
+.od-doc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.od-doc-header h2{margin:0 0 4px}
+.od-doc-header p{margin:0;color:var(--texto-suave);font-size:12px}
+.od-doc-acciones{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+.od-doc-toolbar{display:flex;align-items:center;gap:4px;padding:8px 10px;background:var(--seccion);border:1px solid var(--borde);border-radius:0;clip-path:var(--clip-sm);margin-bottom:14px;flex-wrap:wrap}
+.od-doc-toolbar button{background:#fff;border:1px solid var(--borde);padding:6px 10px;font-size:12px;font-weight:600;color:var(--negro);cursor:pointer;border-radius:0;clip-path:var(--clip-sm);transition:background .2s,border-color .2s}
+.od-doc-toolbar button:hover{background:var(--naranja-claro);border-color:var(--acento);color:var(--naranja-osc)}
+.od-doc-toolbar button:active{transform:scale(.96)}
+.od-doc-sep{width:1px;height:22px;background:var(--borde);margin:0 4px}
+
+.od-doc-estado-voz{display:flex;align-items:center;gap:10px;background:#fff2e6;border:1px solid var(--acento);padding:8px 14px;margin-bottom:14px;border-radius:0;clip-path:var(--clip-sm);color:var(--naranja-osc);font-weight:600;font-size:12px}
+.od-doc-pulso{width:10px;height:10px;border-radius:50%;background:#e03131;animation:od-pulso 1.2s infinite ease-in-out}
+@keyframes od-pulso{0%{transform:scale(.8);opacity:.7}50%{transform:scale(1.3);opacity:1}100%{transform:scale(.8);opacity:.7}}
+
+#btnDictar.od-grabando{background:#c92a2a!important;color:#fff!important;animation:od-btn-latido 1.4s infinite}
+@keyframes od-btn-latido{0%,100%{box-shadow:0 0 0 0 rgba(201,42,42,.6)}50%{box-shadow:0 0 0 8px rgba(201,42,42,0)}}
+
+.od-doc-contenedor-folio{background:#d5d7dc;padding:24px 16px;border:1px solid var(--borde);border-radius:0;clip-path:var(--clip-lg);display:flex;justify-content:center}
+.od-doc-hoja{width:min(820px,100%);min-height:500px;background:#fff;color:#1a1a1a;padding:48px 56px;box-shadow:0 4px 18px rgba(0,0,0,.15);border:1px solid #c2c5cc;outline:none;font-size:14px;line-height:1.7;font-family:'Segoe UI',Roboto,Arial,sans-serif}
+.od-doc-hoja:focus{outline:2px solid var(--acento);outline-offset:2px}
+.od-doc-hoja:empty:before{content:attr(placeholder);color:#9ca3af;pointer-events:none}
+.od-doc-hoja h1{font-size:24px;margin-top:12px;margin-bottom:8px;border-bottom:2px solid var(--acento);padding-bottom:4px}
+.od-doc-hoja h2{font-size:18px;margin-top:10px;margin-bottom:6px}
+.od-doc-hoja p{margin:0 0 10px}
+.od-doc-hoja ul,.od-doc-hoja ol{padding-left:24px;margin-bottom:10px}
