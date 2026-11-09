@@ -1,2 +1,0 @@
-# Voz y Habla
-

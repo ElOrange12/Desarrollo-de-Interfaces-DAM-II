@@ -1,2 +1,0 @@
-# Personalización de la instalación
-

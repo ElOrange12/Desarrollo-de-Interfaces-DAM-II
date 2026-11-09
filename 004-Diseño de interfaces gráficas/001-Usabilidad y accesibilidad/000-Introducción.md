@@ -1,2 +1,0 @@
-# Usabilidad y accesibilidad
-

@@ -1,1 +1,0 @@
-document.getElementById("titulo").textContent = "Título modificado";

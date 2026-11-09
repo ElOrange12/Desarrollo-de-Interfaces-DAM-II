@@ -1,2 +1,0 @@
-# Pautas de diseño
-

@@ -1,2 +1,0 @@
-# Creación de componentes visuales
-

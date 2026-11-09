@@ -1,2 +1,0 @@
-# Estructura general. Secciones
-

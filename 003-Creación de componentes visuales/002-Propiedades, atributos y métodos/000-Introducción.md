@@ -1,2 +1,0 @@
-# Propiedades, atributos y métodos
-

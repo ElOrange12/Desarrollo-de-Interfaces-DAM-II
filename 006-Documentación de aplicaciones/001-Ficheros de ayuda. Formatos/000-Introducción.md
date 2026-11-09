@@ -1,2 +1,0 @@
-# Ficheros de ayuda. Formatos
-

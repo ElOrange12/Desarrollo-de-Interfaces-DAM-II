@@ -1,0 +1,23 @@
+{
+  "nombre": "OrangeDev | interfaz integrada",
+  "lema": "Código limpio, lógica robusta y pasión por construir soluciones reales.",
+  "colores": [
+    { "variable": "--negro",        "nombre": "Obsidiana",     "significado": "Fondo principal. Oscuro y profesional, base de toda la interfaz." },
+    { "variable": "--naranja",      "nombre": "Naranja vivo",  "significado": "Acento de marca. Energía y acción. Solo para lo pulsable o activo." },
+    { "variable": "--naranja-claro","nombre": "Naranja sutil", "significado": "Fondo suave de badges y zonas de foco. Mantiene la coherencia sin saturar." },
+    { "variable": "--seccion",      "nombre": "Carbón",        "significado": "Separa columnas y paneles dentro del fondo oscuro." },
+    { "variable": "--borde",        "nombre": "Gris borde",    "significado": "Líneas divisorias discretas entre componentes." }
+  ],
+  "tipografia": {
+    "familia": "Segoe UI, system-ui, Ubuntu, Roboto, Arial, sans-serif",
+    "motivo": "Tipografía de sistema, limpia y muy legible. Sin dependencias externas."
+  },
+  "formas": {
+    "radio": "Esquinas chamfered: corte diagonal en sup-der e inf-izq. Estilo técnico y personal.",
+    "motivo": "Las esquinas cortadas dan personalidad y ritmo visual sin abandonar la austeridad del fondo oscuro."
+  },
+  "logo": {
+    "archivo": "img/logo.svg",
+    "motivo": "La O de OrangeDev dentro de un cuadrado redondeado con el color de acción de la marca."
+  }
+}

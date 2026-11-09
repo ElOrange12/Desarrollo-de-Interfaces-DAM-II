@@ -1,2 +1,0 @@
-# Realización de pruebas
-

@@ -1,2 +1,0 @@
-# Firma digital de aplicaciones
-

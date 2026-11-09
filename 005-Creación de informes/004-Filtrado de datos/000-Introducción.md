@@ -1,2 +1,0 @@
-# Filtrado de datos
-
